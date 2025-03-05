@@ -776,17 +776,17 @@ int InitPlatform(void)
 
         // In certain cases the status of the conneciton is reported as UKNOWN, but it is still connected.
         // This might be a hardware or software limitation like on Raspberry Pi Zero with composite output.
-        //if (((con->connection == DRM_MODE_CONNECTED) || (con->connection == DRM_MODE_UNKNOWNCONNECTION)) && (con->encoder_id))
+        if (((con->connection == DRM_MODE_CONNECTED) || (con->connection == DRM_MODE_UNKNOWNCONNECTION)) && (con->encoder_id))
         {
             TRACELOG(LOG_TRACE, "DISPLAY: DRM mode connected");
             platform.connector = con;
             break;
         }
-        //else
-        //{
-            //TRACELOG(LOG_TRACE, "DISPLAY: DRM mode NOT connected (deleting)");
-            //drmModeFreeConnector(con);
-        //}
+        else
+        {
+            TRACELOG(LOG_TRACE, "DISPLAY: DRM mode NOT connected (deleting)");
+            drmModeFreeConnector(con);
+        }
     }
 
     if (!platform.connector)
