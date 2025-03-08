@@ -758,45 +758,45 @@ void DisableCursor(void) {
 
 // Swap back buffer with front buffer (screen drawing)
 void SwapScreenBuffer(void) {
-  eglSwapBuffers(platform.device, platform.surface);
+  //eglSwapBuffers(platform.device, platform.surface);
 
-  if (!platform.gbmSurface || (-1 == platform.fd) || !platform.connector ||
-      !platform.crtc)
-    TRACELOG(LOG_ERROR, "DISPLAY: DRM initialization failed to swap");
+  //if (!platform.gbmSurface || (-1 == platform.fd) || !platform.connector ||
+  //    !platform.crtc)
+  //  TRACELOG(LOG_ERROR, "DISPLAY: DRM initialization failed to swap");
 
-  struct gbm_bo *bo = gbm_surface_lock_front_buffer(platform.gbmSurface);
-  if (!bo)
-    TRACELOG(LOG_ERROR, "DISPLAY: Failed GBM to lock front buffer");
+  //struct gbm_bo *bo = gbm_surface_lock_front_buffer(platform.gbmSurface);
+  //if (!bo)
+  //  TRACELOG(LOG_ERROR, "DISPLAY: Failed GBM to lock front buffer");
 
-  uint32_t fb = 0;
-  int result = drmModeAddFB(
-      platform.fd, platform.connector->modes[platform.modeIndex].hdisplay,
-      platform.connector->modes[platform.modeIndex].vdisplay, 24, 32,
-      gbm_bo_get_stride(bo), gbm_bo_get_handle(bo).u32, &fb);
-  if (result != 0)
-    TRACELOG(LOG_ERROR, "DISPLAY: drmModeAddFB() failed with result: %d",
-             result);
+  //uint32_t fb = 0;
+  //int result = drmModeAddFB(
+  //    platform.fd, platform.connector->modes[platform.modeIndex].hdisplay,
+  //    platform.connector->modes[platform.modeIndex].vdisplay, 24, 32,
+  //    gbm_bo_get_stride(bo), gbm_bo_get_handle(bo).u32, &fb);
+  //if (result != 0)
+  //  TRACELOG(LOG_ERROR, "DISPLAY: drmModeAddFB() failed with result: %d",
+  //           result);
 
-  result = drmModeSetCrtc(platform.fd, platform.crtc->crtc_id, fb, 0, 0,
-                          &platform.connector->connector_id, 1,
-                          &platform.connector->modes[platform.modeIndex]);
-  if (result != 0)
-    TRACELOG(LOG_ERROR, "DISPLAY: drmModeSetCrtc() failed with result: %d",
-             result);
+  //result = drmModeSetCrtc(platform.fd, platform.crtc->crtc_id, fb, 0, 0,
+  //                        &platform.connector->connector_id, 1,
+  //                        &platform.connector->modes[platform.modeIndex]);
+  //if (result != 0)
+  //  TRACELOG(LOG_ERROR, "DISPLAY: drmModeSetCrtc() failed with result: %d",
+  //           result);
 
-  if (platform.prevFB) {
-    result = drmModeRmFB(platform.fd, platform.prevFB);
-    if (result != 0)
-      TRACELOG(LOG_ERROR, "DISPLAY: drmModeRmFB() failed with result: %d",
-               result);
-  }
+  //if (platform.prevFB) {
+  //  result = drmModeRmFB(platform.fd, platform.prevFB);
+  //  if (result != 0)
+  //    TRACELOG(LOG_ERROR, "DISPLAY: drmModeRmFB() failed with result: %d",
+  //             result);
+  //}
 
-  platform.prevFB = fb;
+  //platform.prevFB = fb;
 
-  if (platform.prevBO)
-    gbm_surface_release_buffer(platform.gbmSurface, platform.prevBO);
+  //if (platform.prevBO)
+  //  gbm_surface_release_buffer(platform.gbmSurface, platform.prevBO);
 
-  platform.prevBO = bo;
+  //platform.prevBO = bo;
 }
 
 //----------------------------------------------------------------------------------
