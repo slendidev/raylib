@@ -9,7 +9,7 @@
 **********************************************************************************************/
 
 #include "raylib.h"
-#include "rlgl.h"          // Needed for rlDrawRenderBatchActive()
+//#include "rlgl.h"          // Needed for rlDrawRenderBatchActive()
 #include "raylib_internal.h" // Gives access to global CORE struct (path may vary)
 
 //----------------------------------------------------------------------------------
