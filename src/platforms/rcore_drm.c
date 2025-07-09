@@ -12,19 +12,20 @@
 // Externals
 //----------------------------------------------------------------------------------
 extern CoreData CORE;
-extern void rlDrawRenderBatchActive();
 
 //----------------------------------------------------------------------------------
 // Platform init/shutdown (stubs)
 //----------------------------------------------------------------------------------
 int InitPlatform(void)
 {
-	// Assume caller already has a current GLES 3.2 context & has called InitWindow().
-	CORE.Window.ready = true;
+	CORE.Window.screen.width = 256;
+	CORE.Window.screen.height = 256;
+	CORE.Window.render.width = CORE.Window.screen.width;
+	CORE.Window.render.height = CORE.Window.screen.height;
 
-	// Let raylib build its default FBOs against the already‑current context.
-	if (CORE.Window.render.width == 0) CORE.Window.render.width = CORE.Window.screen.width;
-	if (CORE.Window.render.height == 0) CORE.Window.render.height = CORE.Window.screen.height;
+	SetupFramebuffer(256,256);
+
+	CORE.Window.ready = true;
 
 	return 0;
 }
