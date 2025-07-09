@@ -7,6 +7,8 @@
 *                                                                                              *
 *   Drop it in place of rcore_drm.c when you already own the GL context & input pipeline.      *
 **********************************************************************************************/
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
 
 //----------------------------------------------------------------------------------
 // Externals
@@ -24,6 +26,8 @@ int InitPlatform(void)
 	CORE.Window.render.height = CORE.Window.screen.height;
 
 	SetupFramebuffer(256,256);
+
+	rlLoadExtensions(eglGetProcAddress);
 
 	CORE.Window.ready = true;
 
