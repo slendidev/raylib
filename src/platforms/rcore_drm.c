@@ -8,14 +8,11 @@
 *   Drop it in place of rcore_drm.c when you already own the GL context & input pipeline.      *
 **********************************************************************************************/
 
-#include "raylib.h"
-//#include "rlgl.h"          // Needed for rlDrawRenderBatchActive()
-#include "raylib_internal.h" // Gives access to global CORE struct (path may vary)
-
 //----------------------------------------------------------------------------------
 // Externals
 //----------------------------------------------------------------------------------
 extern CoreData CORE;
+extern void rlDrawRenderBatchActive();
 
 //----------------------------------------------------------------------------------
 // Platform init/shutdown (stubs)
@@ -28,7 +25,6 @@ int InitPlatform(void)
 	// Let raylib build its default FBOs against the already‑current context.
 	if (CORE.Window.render.width == 0) CORE.Window.render.width = CORE.Window.screen.width;
 	if (CORE.Window.render.height == 0) CORE.Window.render.height = CORE.Window.screen.height;
-	SetupFramebuffer(CORE.Window.render.width, CORE.Window.render.height);
 
 	return 0;
 }
