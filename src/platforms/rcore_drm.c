@@ -130,7 +130,9 @@ void OpenURL(const char *url)                                 {}
 //----------------------------------------------------------------------------------
 // Input placeholders – roll your own
 //----------------------------------------------------------------------------------
-void PollInputEvents(void)                                    {}
+void PollInputEvents(void)                                    {
+	CORE.Window.resizedLastFrame = true;
+}
 int  SetGamepadMappings(const char *m)                        { return 0; }
 void SetGamepadVibration(int g,float l,float r,float d)       {}
 void SetMousePosition(int x,int y)                            { CORE.Input.Mouse.currentPosition=(Vector2){(float)x,(float)y}; }
