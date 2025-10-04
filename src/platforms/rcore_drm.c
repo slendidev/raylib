@@ -29,7 +29,8 @@ int InitPlatform(void)
 	CORE.Window.currentFbo.width = CORE.Window.screen.width;
 	CORE.Window.currentFbo.height = CORE.Window.screen.height;
 
-	SetupFramebuffer(256,256);
+	SetupFramebuffer(CORE.Window.currentFbo.width,CORE.Window.currentFbo.height);
+	SetupViewport(CORE.Window.currentFbo.width,CORE.Window.currentFbo.height);
 
 	rlLoadExtensions(eglGetProcAddress);
 
@@ -70,6 +71,8 @@ void SetWindowSize(int w,int h)                               {
 	CORE.Window.display.height = CORE.Window.screen.height;
 	CORE.Window.currentFbo.width = CORE.Window.screen.width;
 	CORE.Window.currentFbo.height = CORE.Window.screen.height;
+	SetupViewport(CORE.Window.currentFbo.width,CORE.Window.currentFbo.height);
+	CORE.Window.resizedLastFrame = true;
 }
 void SetWindowOpacity(float o)                                {}
 void SetWindowFocused(void)                                   {}
