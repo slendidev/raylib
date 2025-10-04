@@ -57,7 +57,12 @@ void SetWindowPosition(int x,int y)                           {}
 void SetWindowMonitor(int monitor)                            {}
 void SetWindowMinSize(int w,int h)                            { CORE.Window.screenMin.width = w; CORE.Window.screenMin.height = h; }
 void SetWindowMaxSize(int w,int h)                            { CORE.Window.screenMax.width = w; CORE.Window.screenMax.height = h; }
-void SetWindowSize(int w,int h)                               {}
+void SetWindowSize(int w,int h)                               {
+	CORE.Window.screen.width = w;
+	CORE.Window.screen.height = h;
+	CORE.Window.render.width = CORE.Window.screen.width;
+	CORE.Window.render.height = CORE.Window.screen.height;
+}
 void SetWindowOpacity(float o)                                {}
 void SetWindowFocused(void)                                   {}
 void *GetWindowHandle(void)                                   { return NULL; }
