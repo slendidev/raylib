@@ -26,6 +26,8 @@ int InitPlatform(void)
 	CORE.Window.render.height = CORE.Window.screen.height;
 	CORE.Window.display.width = CORE.Window.screen.width;
 	CORE.Window.display.height = CORE.Window.screen.height;
+	CORE.Window.currentFbo.width = CORE.Window.screen.width;
+	CORE.Window.currentFbo.height = CORE.Window.screen.height;
 
 	SetupFramebuffer(256,256);
 
@@ -66,6 +68,8 @@ void SetWindowSize(int w,int h)                               {
 	CORE.Window.render.height = CORE.Window.screen.height;
 	CORE.Window.display.width = CORE.Window.screen.width;
 	CORE.Window.display.height = CORE.Window.screen.height;
+	CORE.Window.currentFbo.width = CORE.Window.screen.width;
+	CORE.Window.currentFbo.height = CORE.Window.screen.height;
 }
 void SetWindowOpacity(float o)                                {}
 void SetWindowFocused(void)                                   {}
