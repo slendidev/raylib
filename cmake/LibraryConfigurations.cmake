@@ -92,13 +92,11 @@ elseif ("${PLATFORM}" MATCHES "DRM")
 
     find_library(GLESV2 GLESv2)
     find_library(EGL EGL)
-    find_library(DRM drm)
-    find_library(GBM gbm)
 
     if (NOT CMAKE_CROSSCOMPILING OR NOT CMAKE_SYSROOT)
         include_directories(/usr/include/libdrm)
     endif ()
-    set(LIBS_PRIVATE ${GLESV2} ${EGL} ${DRM} ${GBM} atomic pthread m dl)
+    set(LIBS_PRIVATE ${GLESV2} ${EGL} atomic pthread m dl)
 
 elseif ("${PLATFORM}" MATCHES "SDL")
     find_package(SDL2 REQUIRED)
